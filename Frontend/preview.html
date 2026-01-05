@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+
+  <link rel="shortcut icon" href="img/logo.png">
+  <title>Tu catálogo está listo | CATA</title>
+
+  <meta name="description" content="Descarga tu catálogo profesional en PDF listo para vender por WhatsApp. Prueba gratis o elimina la marca de agua con un pago único." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tu catálogo está listo | CATA" />
+  <meta property="og:description" content="Descárgalo y empieza a vender por WhatsApp." />
+  <meta property="og:type" content="website" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/preview.css">
+</head>
+
+<body>
+
+  <div id="nav"></div>
+
+  <main class="container">
+
+    <header>
+      <h1>Tu catálogo está listo 🎉</h1>
+      <p>Descárgalo y empieza a vender por WhatsApp</p>
+    </header>
+
+    <section class="preview">
+      <iframe id="pdfPreview" title="Vista previa del catálogo PDF"></iframe>
+    </section>
+
+    <section class="options">
+
+      <article class="card free">
+        <h3>Gratis</h3>
+        <ul>
+          <li>Incluye marca de agua CATA</li>
+          <li>Ideal para probar el servicio</li>
+          <li>Descarga inmediata</li>
+        </ul>
+        <button id="freeDownload">Descargar gratis</button>
+      </article>
+
+      <article class="card paid">
+        <span class="badge">Más popular</span>
+        <h3>Sin marca de agua</h3>
+        <div class="price">$15 USD</div>
+        <ul>
+          <li>Catálogo profesional limpio</li>
+          <li>Uso comercial ilimitado</li>
+          <li>Pago único</li>
+        </ul>
+        <button id="payDownload">Descargar sin marca</button>
+      </article>
+
+    </section>
+
+    <p class="note">
+      Pago único · Sin suscripciones · Acceso inmediato
+    </p>
+
+  </main>
+
+  <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/preview.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Generador de Catálogos para WhatsApp | CATA</title>
+  <meta name="description" content="Crea catálogos profesionales en PDF listos para vender por WhatsApp. Sube tu inventario y genera tu catálogo en minutos." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CATA — Genera catálogos para WhatsApp" />
+  <meta property="og:description" content="Convierte tu inventario en un catálogo profesional y empieza a vender por WhatsApp." />
+  <meta property="og:type" content="website" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/app.css" />
+</head>
+
+<body>
+
+  <div id="nav"></div>
+
+  <div class="page">
+    <main class="card">
+
+      <header class="brand">
+        <img src="./img/logo.png" alt="CATA generador de catálogos para WhatsApp" />
+        <h1>Vende fácil por WhatsApp</h1>
+        <p>Convierte tu inventario en un catálogo profesional</p>
+      </header>
+
+      <form id="cataForm">
+
+        <label>Archivo CSV</label>
+        <input type="file" name="csv" accept=".csv" required />
+        <span class="hint">Tu lista de productos</span>
+
+        <label>Logo de tu marca</label>
+        <input type="file" name="logo" accept="image/png, image/jpeg" required />
+        <span class="hint">PNG o JPG recomendado</span>
+
+        <label>Número de WhatsApp</label>
+        <input type="text" name="whatsapp" placeholder="573001234567" required />
+        <span class="hint">Incluye el código de país</span>
+
+        <button type="submit">Generar catálogo</button>
+      </form>
+
+      <div class="status" id="status"></div>
+
+      <footer>
+        Gratis · Rápido · Sin registros
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/generate.js"></script>
+
+</body>
+</html>
