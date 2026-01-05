@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pago recibido | CATA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:;">
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="card">
+    <h1>Comprobando pago...</h1>
+    <p id="message">Esperando confirmación del pago. Esto suele tardar unos segundos.</p>
+
+    <div id="actions" style="display:none;">
+      <a id="downloadBtn" class="btn" href="#">Descargar catálogo sin marca</a>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const job = params.get('job');
+    if (!job) {
+      document.getElementById('message').textContent = 'Job no especificado.';
+      throw new Error('job missing');
+    }
+
+    async function check() {
+      try {
+        const res = await fetch(`/status?job=${job}`);
+        const data = await res.json();
+        if (data.paid) {
+          document.getElementById('message').textContent = 'Pago confirmado. Puedes descargar tu catálogo sin marca.';
+          const btn = document.getElementById('downloadBtn');
+          btn.href = data.download;
+          document.getElementById('actions').style.display = 'block';
+        } else {
+          document.getElementById('message').textContent = 'Pago no confirmado aún. Reintentando en 3 segundos...';
+          setTimeout(check, 3000);
+        }
+      } catch (e) {
+        document.getElementById('message').textContent = 'Error verificando el pago. Reintentaré en 5 segundos.';
+        setTimeout(check, 5000);
+      }
+    }
+
+    check();
+  </script>
+
+  <script src="./assets/js/nav.js"></script>
+</body>
+</html>

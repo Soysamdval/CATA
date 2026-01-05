@@ -54,16 +54,42 @@ def normalize_whatsapp(whatsapp):
 # CSV → DATA
 # ==========================================
 
+def _find_field(row, candidates):
+    keys = {k.lower().strip(): k for k in row.keys()}
+    for cand in candidates:
+        for k_lower, k in keys.items():
+            if cand in k_lower:
+                return row.get(k, "").strip()
+    return ""
+
+
+def _parse_price(raw):
+    if not raw:
+        return None
+    # Eliminar símbolos y normalizar comas/decimales
+    s = str(raw).replace("$", "").replace(" ", "").replace("\u00A0", "")
+    s = s.replace(".", "").replace(",", ".") if s.count(",") > 0 and s.count(".") == 0 else s
+    # Mantener solo números y punto
+    s = ''.join(ch for ch in s if (ch.isdigit() or ch == '.'))
+    try:
+        return float(s)
+    except:
+        return None
+
+
 def load_products_from_csv(csv_path):
+    """Carga productos desde CSV intentando mapear nombres de columnas comunes en distintos idiomas."""
     data = []
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            category = row.get("category", "").strip()
-            name = row.get("name", "").strip()
-            price_raw = row.get("price", "").strip()
-            price = float(price_raw) if price_raw else None
-            image_url = row.get("image_url", "").strip()
+            category = _find_field(row, ["category", "categoria", "cat"]) or ""
+            name = _find_field(row, ["name", "titulo", "title", "nombre"]) or ""
+            price_raw = _find_field(row, ["price", "precio", "valor"]) or ""
+            image_url = _find_field(row, ["image", "imagen", "image_url", "img", "imagen_url"]) or ""
+
+            price = _parse_price(price_raw)
+
             if category and name:
                 data.append((category, name, price, image_url))
     data.sort(key=lambda x: x[0])

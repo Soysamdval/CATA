@@ -4,3 +4,6 @@ reportlab
 pillow
 requests
 python-multipart
+pycryptodome
+pytest
+httpx

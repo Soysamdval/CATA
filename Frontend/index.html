@@ -6,6 +6,13 @@
   <title>Generador de Catálogos para WhatsApp | CATA</title>
   <meta name="description" content="Crea catálogos profesionales en PDF listos para vender por WhatsApp. Sube tu inventario y genera tu catálogo en minutos." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/" />
+  <meta name="theme-color" content="#22C55E" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"CATA","description":"Generador de catálogos en PDF listos para vender por WhatsApp","brand":{"@type":"Organization","name":"CATA"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"15.00"}}
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="CATA — Genera catálogos para WhatsApp" />
@@ -14,6 +21,7 @@
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:;">
 
   <link rel="stylesheet" href="./assets/css/app.css" />
 </head>
@@ -31,19 +39,19 @@
         <p>Convierte tu inventario en un catálogo profesional</p>
       </header>
 
-      <form id="cataForm">
+      <form id="cataForm" aria-labelledby="formTitle">
 
-        <label>Archivo CSV</label>
-        <input type="file" name="csv" accept=".csv" required />
+        <label for="csvFile">Archivo CSV</label>
+        <input id="csvFile" type="file" name="csv" accept=".csv" required />
         <span class="hint">Tu lista de productos</span>
 
-        <label>Logo de tu marca</label>
-        <input type="file" name="logo" accept="image/png, image/jpeg" required />
+        <label for="logoFile">Logo de tu marca</label>
+        <input id="logoFile" type="file" name="logo" accept="image/png, image/jpeg" required />
         <span class="hint">PNG o JPG recomendado</span>
 
-        <label>Número de WhatsApp</label>
-        <input type="text" name="whatsapp" placeholder="573001234567" required />
-        <span class="hint">Incluye el código de país</span>
+        <label for="whatsappInput">Número de WhatsApp</label>
+        <input id="whatsappInput" type="text" name="whatsapp" placeholder="573001234567" required aria-describedby="whatsappHint"/>
+        <span id="whatsappHint" class="hint">Incluye el código de país</span>
 
         <button type="submit">Generar catálogo</button>
       </form>
